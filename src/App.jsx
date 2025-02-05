@@ -89,7 +89,10 @@ const App = () => {
     },
   ]);
 
-  const handleAddFighter = (fighter) => {};
+  const handleAddFighter = (fighter) => {
+    setTeam([...team, fighter]);
+  };
+  console.log('team:', team);
 
   return (
     <>
@@ -102,7 +105,7 @@ const App = () => {
             <p> Price: {fighter.price}</p>
             <p> Strength: {fighter.strength}</p>
             <p> Agility: {fighter.agility}</p>
-            <button>Add</button>
+            <button onClick={() => handleAddFighter(fighter)}>Add</button>
           </li>
         ))}
       </ul>
