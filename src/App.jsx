@@ -101,10 +101,19 @@ const App = () => {
       }
     });
   };
-  //console.log('team:', team);
-  // console.log('zombies', zombieFighters);
+
+  const handleRemoveFighter = (fighter) => {
+    setTeam(team.filter((f) => f.id !== fighter.id));
+    setZombieFighters([...zombieFighters, fighter]);
+  };
+
   const totalStrength = team.reduce(
     (total, currentValue) => (total = total + currentValue.strength),
+    0
+  );
+
+  const totalAgility = team.reduce(
+    (total, currentValue) => (total = total + currentValue.agility),
     0
   );
 
@@ -125,11 +134,16 @@ const App = () => {
         ))}
       </ul>
       {team.length === 0 ? (
-        <h3>Add members to your team</h3>
+        <>
+          <h3>Add members to your team</h3>
+          <p>Team Strength: {totalStrength}</p>
+          <p>Team Agility: {totalAgility}</p>
+        </>
       ) : (
         <>
           <h3>My Team</h3>
           <p>Team Strength: {totalStrength}</p>
+          <p>Team Agility: {totalAgility}</p>
           <ul>
             {team.map((fighter) => (
               <li key={fighter.id}>
@@ -138,6 +152,9 @@ const App = () => {
                 <p> Price: {fighter.price}</p>
                 <p> Strength: {fighter.strength}</p>
                 <p> Agility: {fighter.agility}</p>
+                <button onClick={() => handleRemoveFighter(fighter)}>
+                  Remove
+                </button>
               </li>
             ))}
           </ul>
