@@ -105,6 +105,7 @@ const App = () => {
   const handleRemoveFighter = (fighter) => {
     setTeam(team.filter((f) => f.id !== fighter.id));
     setZombieFighters([...zombieFighters, fighter]);
+    setMoney(money + fighter.price);
   };
 
   const totalStrength = team.reduce(
