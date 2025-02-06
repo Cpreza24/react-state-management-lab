@@ -100,11 +100,13 @@ const App = () => {
         return money - fighter.price;
       }
     });
-
-    console.log(fighter.id);
   };
-  console.log('team:', team);
+  //console.log('team:', team);
   // console.log('zombies', zombieFighters);
+  const totalStrength = team.reduce(
+    (total, currentValue) => (total = total + currentValue.strength),
+    0
+  );
 
   return (
     <>
@@ -123,10 +125,11 @@ const App = () => {
         ))}
       </ul>
       {team.length === 0 ? (
-        <p>Add members to your team</p>
+        <h3>Add members to your team</h3>
       ) : (
         <>
-          <p>My Team</p>
+          <h3>My Team</h3>
+          <p>Team Strength: {totalStrength}</p>
           <ul>
             {team.map((fighter) => (
               <li key={fighter.id}>
